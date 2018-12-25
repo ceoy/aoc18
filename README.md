@@ -1,8 +1,9 @@
 # Advent of Code 2018
 
-Advent of Code with Kotlin
+Advent of Code 2018 written in Kotlin
 
-## Run
+## Run the tests
 
-> `./gradlew run`
+> `./gradlew lint`
 
+Hint: running (`./gradlew run`) doesn't actually do anything.

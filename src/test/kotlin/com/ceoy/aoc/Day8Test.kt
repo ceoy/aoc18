@@ -16,7 +16,7 @@ class Day8Test {
     @Test
     fun day8PartOneActual() {
         val classToTest = Day8()
-        println(classToTest.partOne())
+        assertEquals(41849, classToTest.partOne())
     }
 
     @Test
@@ -28,6 +28,6 @@ class Day8Test {
     @Test
     fun day8PartTwoActual() {
         val classToTest = Day8()
-        println(classToTest.partTwo())
+        assertEquals(32487, classToTest.partTwo())
     }
 }
