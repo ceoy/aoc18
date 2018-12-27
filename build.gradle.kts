@@ -16,6 +16,7 @@ repositories {
     // Use jcenter for resolving your dependencies.
     // You can declare any Maven/Ivy/file repository here.
     jcenter()
+    maven("https://jitpack.io")
 }
 
 dependencies {
@@ -27,6 +28,19 @@ dependencies {
 
     // Use the Kotlin JUnit integration
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
+
+    // extension functions for statistics
+    implementation("org.nield:kotlin-statistics")
+
+    constraints {
+        add("implementation", "org.nield:kotlin-statistics:1.2.1") {
+            because("i want this version")
+        }
+    }
+}
+
+dependencies {
+
 }
 
 application {

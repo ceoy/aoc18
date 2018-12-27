@@ -5,7 +5,7 @@ import kotlin.test.assertEquals
 
 class Day10Test {
 
-    private val exampleInput = FileLoader.load("day10.txt")
+    private val exampleInput = FileLoader.load("day10_example.txt")
 
     @Test
     fun `Day 10 Part One Example`() {
