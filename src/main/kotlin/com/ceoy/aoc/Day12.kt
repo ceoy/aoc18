@@ -5,7 +5,7 @@ class Day12(private val initialState: String, rules: List<String>) {
         Rule.parse(it)
     }
 
-    fun partOne(): Int {
+    fun partOne(): Long {
         var generation = Generation(initialState, 0)
         repeat(20) {
             generation = nextGeneration(generation)
@@ -14,13 +14,29 @@ class Day12(private val initialState: String, rules: List<String>) {
         return generation.calculateValue()
     }
 
-    fun partTwo(): Int {
+    fun partTwo(): Long {
         var generation = Generation(initialState, 0)
 
-        repeat(50000000000) {
+        var generations = 0L
+        var differenceFound = false
+
+        // check if there were even any mutations
+        while (!differenceFound) {
+            generations++
+
+            val oldGeneration = generation
             generation = nextGeneration(generation)
+
+            if (oldGeneration.state == generation.state) {
+                // wow no more mutations found
+                differenceFound = true
+            }
         }
 
+        // find the amount of generations that are missing
+        val restGeneration = 50000000000L - generations
+
+        generation = Generation(generation.state, generation.startIndex + restGeneration)
         return generation.calculateValue()
     }
 
@@ -38,8 +54,8 @@ class Day12(private val initialState: String, rules: List<String>) {
             newStartIndex += 5
         }
 
-        if (currentGeneration.state[0] == '#' ||
-                currentGeneration.state[1] == '#') {
+        if (newTempState[0] == '#' ||
+                newTempState[0] == '#') {
 
             // this might increase this hole thing a bit too much but w/e
             newTempState = "..$newTempState"
@@ -78,12 +94,25 @@ class Day12(private val initialState: String, rules: List<String>) {
         }
 
 
-        return Generation(String(newState), newStartIndex)
+        // normalise generation state
+        // always wanna have 5 .... in front
+        var newStateString = String(newState)
+
+        while (newStateString.take(5) != ".....") {
+            newStateString = ".$newStateString"
+            newStartIndex--
+        }
+
+        while (newStateString.takeLast(5) != ".....") {
+            newStateString = "$newStateString."
+        }
+
+        return Generation(newStateString, newStartIndex)
     }
 
-    data class Generation(val state: String, val startIndex: Int) {
-        fun calculateValue(): Int {
-            var value = 0
+    data class Generation(val state: String, val startIndex: Long) {
+        fun calculateValue(): Long {
+            var value = 0L
             state.forEachIndexed { index, char ->
                 if (char == '#') value += startIndex  + index
             }

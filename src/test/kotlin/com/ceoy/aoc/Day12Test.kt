@@ -32,6 +32,6 @@ class Day12Test {
     @Test
     fun `Day 12 Part Two`() {
         val day12 = Day12(initialState, rules)
-        println(day12.partTwo())
+        assertEquals(2500000001175L, day12.partTwo())
     }
 }
