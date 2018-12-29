@@ -102,7 +102,6 @@ class Day7 {
                         steps.remove(key)
                     }
                 }
-
             }
 
             allTheWorker.forEach { it.doWork() }
@@ -111,10 +110,12 @@ class Day7 {
         return result
     }
 
-    data class Worker(var workingOn: Char = ' ',
-                      var working: Boolean = false,
-                      var timeWorking: Int = 0,
-                      var done: () -> Unit = {}) {
+    data class Worker(
+        var workingOn: Char = ' ',
+        var working: Boolean = false,
+        var timeWorking: Int = 0,
+        var done: () -> Unit = {}
+    ) {
         fun doWork() {
             if (working) {
                 timeWorking -= 1

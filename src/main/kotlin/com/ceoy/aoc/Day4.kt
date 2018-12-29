@@ -1,9 +1,9 @@
 package com.ceoy.aoc
 
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Calendar
+import java.util.Date
 import java.util.concurrent.TimeUnit
-
 
 class Day4 {
     companion object {
@@ -32,17 +32,17 @@ class Day4 {
 
         l?.let {
             val t = it.dates
-                    .flatMap {
-                        getAllMinutes(it)
-                    }
-                    .groupBy {
-                        it
-                    }
-                    .map {
-                        Pair(it.key, it.value.size)
-                    }.maxBy {
-                        it.second
-                    }
+                .flatMap {
+                    getAllMinutes(it)
+                }
+                .groupBy {
+                    it
+                }
+                .map {
+                    Pair(it.key, it.value.size)
+                }.maxBy {
+                    it.second
+                }
 
             println(t!!.first * it.id)
         }
@@ -66,12 +66,12 @@ class Day4 {
             val guard = guardList.map { guard ->
                 // check his most frequent time
                 Pair(guard.id, guard.dates
-                        .flatMap { it ->
-                            getAllMinutes(it)
-                        }.groupBy { it }
-                        .map {
-                            Pair(it.key, it.value.size)
-                        }.maxBy { it.second })
+                    .flatMap { it ->
+                        getAllMinutes(it)
+                    }.groupBy { it }
+                    .map {
+                        Pair(it.key, it.value.size)
+                    }.maxBy { it.second })
             }.maxBy { it ->
                 it.second?.second ?: 0
             }
@@ -81,7 +81,6 @@ class Day4 {
                 println(it.first * s)
             }
         }
-
     }
 
     fun getAllMinutes(startAndEnd: Pair<Int, Int>): List<Int> {
@@ -151,7 +150,4 @@ class Day4 {
             }
         }
     }
-
-
 }
-

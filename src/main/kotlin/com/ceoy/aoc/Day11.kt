@@ -2,7 +2,6 @@ package com.ceoy.aoc
 
 class Day11(private val serialNumber: Int) {
 
-
     fun partOne(): String {
         val grid = createGrid()
 
@@ -17,7 +16,6 @@ class Day11(private val serialNumber: Int) {
                     maxPower = power
                     maxX = x
                     maxY = y
-
                 }
             }
         }
@@ -70,9 +68,12 @@ class Day11(private val serialNumber: Int) {
         return "${maxX + 1},${maxY + 1},$squareSize"
     }
 
-    private fun getSquarePowerLevel(xPos: Int, yPos: Int,
-                                    grid: ArrayList<IntArray>,
-                                    squareSize: Int = 3): Int {
+    private fun getSquarePowerLevel(
+        xPos: Int,
+        yPos: Int,
+        grid: ArrayList<IntArray>,
+        squareSize: Int = 3
+    ): Int {
 
         // do not calculate if the square is too big
         if (300 - xPos < squareSize && 300 - yPos < squareSize) {

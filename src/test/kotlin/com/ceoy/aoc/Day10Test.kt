@@ -25,11 +25,9 @@ class Day10Test {
         assertEquals(3, day10.partOneAndTwo("partTwoExample"))
     }
 
-
     @Test
     fun `Day 10 Part Two Actual`() {
         val day10 = Day10()
         assertEquals(10521, day10.partOneAndTwo("partTwoActual"))
     }
-
 }

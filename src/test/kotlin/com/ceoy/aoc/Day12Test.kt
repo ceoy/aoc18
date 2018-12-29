@@ -5,7 +5,8 @@ import kotlin.test.assertEquals
 
 class Day12Test {
 
-    private val initialState = "###.#..#..##.##.###.#.....#.#.###.#.####....#.##..#.#.#..#....##..#.##...#.###.#.#..#..####.#.##.#"
+    private val initialState =
+        "###.#..#..##.##.###.#.....#.#.###.#.####....#.##..#.#.#..#....##..#.##...#.###.#.#..#..####.#.##.#"
     private val rules = FileLoader.load("day12_actual.txt")
 
     private val testRules = FileLoader.load("day12_example.txt")

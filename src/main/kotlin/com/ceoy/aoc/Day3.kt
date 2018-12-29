@@ -43,7 +43,10 @@ class Day3 {
         println(overlappingClaims[0].id)
     }
 
-    private fun doLoop(grid: MutableMap<Int, MutableMap<Int, Int>>, block: (key: Int, depth: MutableMap<Int, Int>, claim: Claim) -> Unit) {
+    private fun doLoop(
+        grid: MutableMap<Int, MutableMap<Int, Int>>,
+        block: (key: Int, depth: MutableMap<Int, Int>, claim: Claim) -> Unit
+    ) {
         // calculate the position
         input.forEach { claim ->
             // get position in first list
@@ -65,7 +68,6 @@ class Day3 {
                 }
             }
         }
-
     }
 
     data class Claim(val id: Int, val marginLeft: Int, val marginTop: Int, val width: Int, val height: Int) {
@@ -81,6 +83,5 @@ class Day3 {
                 return Claim(id, marginLeft, marginTop, width, height)
             }
         }
-
     }
 }

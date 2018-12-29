@@ -5,7 +5,6 @@ class Day5 {
 
     fun one() {
         // println(polymer(input).count())
-
     }
 
     private fun polymer(input: String): String {

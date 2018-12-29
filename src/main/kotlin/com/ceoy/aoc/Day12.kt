@@ -55,7 +55,8 @@ class Day12(private val initialState: String, rules: List<String>) {
         }
 
         if (newTempState[0] == '#' ||
-                newTempState[0] == '#') {
+            newTempState[0] == '#'
+        ) {
 
             // this might increase this hole thing a bit too much but w/e
             newTempState = "..$newTempState"
@@ -64,7 +65,8 @@ class Day12(private val initialState: String, rules: List<String>) {
 
         val curLength = newTempState.length
         if (newTempState[curLength - 1] == '#' ||
-                newTempState[curLength - 2] == '#') {
+            newTempState[curLength - 2] == '#'
+        ) {
             newTempState = "$newTempState.."
         }
 
@@ -93,7 +95,6 @@ class Day12(private val initialState: String, rules: List<String>) {
             newState[index] = toReplace
         }
 
-
         // normalise generation state
         // always wanna have 5 .... in front
         var newStateString = String(newState)
@@ -114,7 +115,7 @@ class Day12(private val initialState: String, rules: List<String>) {
         fun calculateValue(): Long {
             var value = 0L
             state.forEachIndexed { index, char ->
-                if (char == '#') value += startIndex  + index
+                if (char == '#') value += startIndex + index
             }
 
             return value

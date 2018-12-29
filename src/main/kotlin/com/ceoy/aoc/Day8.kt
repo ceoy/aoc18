@@ -3,11 +3,11 @@ package com.ceoy.aoc
 class Day8(input: List<String> = FileLoader.load("day8.txt")) {
 
     private val input = input
-            .last()
-            .split(" ")
-            .map {
-                it.toInt()
-            }
+        .last()
+        .split(" ")
+        .map {
+            it.toInt()
+        }
 
     fun partOne(): Int {
         val tree = Node.parse(input)
@@ -24,9 +24,11 @@ class Day8(input: List<String> = FileLoader.load("day8.txt")) {
     /**
      * The Node of the Tree
      */
-    data class Node(val header: Header,
-                    val childNodes: MutableList<Node>,
-                    val metaData: MutableList<Int>) {
+    data class Node(
+        val header: Header,
+        val childNodes: MutableList<Node>,
+        val metaData: MutableList<Int>
+    ) {
         companion object {
 
             /**
@@ -72,9 +74,9 @@ class Day8(input: List<String> = FileLoader.load("day8.txt")) {
 
         private fun countSteps(): Int {
             // metadata = amount of meta data, 2 = size of header
-            return  (header.metaData + 2
-                    // do the same with all children
-                    + childNodes.sumBy { it.countSteps() })
+            return (header.metaData + 2 +
+                // do the same with all children
+                childNodes.sumBy { it.countSteps() })
         }
 
         fun complicatedMathByMe(): Int {
@@ -95,7 +97,8 @@ class Day8(input: List<String> = FileLoader.load("day8.txt")) {
     /**
      * The Header of a Node
      */
-    data class Header(val childNodes: Int,
-                      val metaData: Int)
-
+    data class Header(
+        val childNodes: Int,
+        val metaData: Int
+    )
 }

@@ -83,38 +83,40 @@ class Day13(private val input: List<String>) {
             grid.add(arrayListOf())
 
             input.forEachIndexed { x, it ->
-                grid[y].add(when (it) {
-                    // carts
-                    '<' -> {
-                        carts.add(Cart(x, y, Direction.LEFT))
-                        LineType.PATH_HORIZONTAL
-                    }
-                    '>' -> {
-                        carts.add(Cart(x, y, Direction.RIGHT))
-                        LineType.PATH_HORIZONTAL
-                    }
-                    '^' -> {
-                        carts.add(Cart(x, y, Direction.UP))
-                        LineType.PATH_VERTICAL
-                    }
-                    'v' -> {
-                        carts.add(Cart(x, y, Direction.DOWN))
-                        LineType.PATH_VERTICAL
-                    }
+                grid[y].add(
+                    when (it) {
+                        // carts
+                        '<' -> {
+                            carts.add(Cart(x, y, Direction.LEFT))
+                            LineType.PATH_HORIZONTAL
+                        }
+                        '>' -> {
+                            carts.add(Cart(x, y, Direction.RIGHT))
+                            LineType.PATH_HORIZONTAL
+                        }
+                        '^' -> {
+                            carts.add(Cart(x, y, Direction.UP))
+                            LineType.PATH_VERTICAL
+                        }
+                        'v' -> {
+                            carts.add(Cart(x, y, Direction.DOWN))
+                            LineType.PATH_VERTICAL
+                        }
 
-                    // intersection
-                    '+' -> LineType.INTERSECTION
+                        // intersection
+                        '+' -> LineType.INTERSECTION
 
-                    // paths
-                    '-' -> LineType.PATH_HORIZONTAL
-                    '|' -> LineType.PATH_VERTICAL
+                        // paths
+                        '-' -> LineType.PATH_HORIZONTAL
+                        '|' -> LineType.PATH_VERTICAL
 
-                    // curves
-                    '/' -> LineType.R_CURVE
-                    '\\' -> LineType.L_CURVE
+                        // curves
+                        '/' -> LineType.R_CURVE
+                        '\\' -> LineType.L_CURVE
 
-                    else -> LineType.NONE
-                })
+                        else -> LineType.NONE
+                    }
+                )
             }
 
             // fill grid :)
@@ -130,11 +132,13 @@ class Day13(private val input: List<String>) {
      * Assumptions about carts and position:
      * 1. Initial Position is not on a intersection
      */
-    data class Cart(var x: Int,
-                    var y: Int,
-                    var directionFacing: Direction,
-                    var memory: Int = 0,
-                    var cartMoved: Boolean = false) {
+    data class Cart(
+        var x: Int,
+        var y: Int,
+        var directionFacing: Direction,
+        var memory: Int = 0,
+        var cartMoved: Boolean = false
+    ) {
 
         fun cartString(): String {
             return "$x,$y"

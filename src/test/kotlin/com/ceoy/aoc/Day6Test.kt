@@ -5,12 +5,14 @@ import kotlin.test.assertEquals
 
 class Day6Test {
 
-    private var testInput = listOf("1, 1",
-            "1, 6",
-            "8, 3",
-            "3, 4",
-            "5, 5",
-            "8, 9")
+    private var testInput = listOf(
+        "1, 1",
+        "1, 6",
+        "8, 3",
+        "3, 4",
+        "5, 5",
+        "8, 9"
+    )
 
     @Test
     fun `Day 6 Part One Example`() {
@@ -32,7 +34,7 @@ class Day6Test {
 
     @Test
     fun `Day 6 Part Two Actual`() {
-       val day6 = Day6()
+        val day6 = Day6()
         assertEquals(44634, day6.two())
     }
 }

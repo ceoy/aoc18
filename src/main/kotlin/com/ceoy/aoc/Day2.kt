@@ -1,7 +1,5 @@
 package com.ceoy.aoc
 
-import java.lang.IllegalStateException
-
 class Day2 {
 
     private val input = FileLoader.load("day2.txt")
@@ -10,7 +8,6 @@ class Day2 {
         var two = 0
         var threes = 0
         input.forEach {
-
 
             val countList = mutableMapOf<Char, Int>()
             it.forEach { char ->
@@ -49,5 +46,4 @@ class Day2 {
 
         throw IllegalStateException("Nothing found")
     }
-
 }

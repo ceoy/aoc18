@@ -50,6 +50,5 @@ class Day11Test {
         }
 
         println("elapsedTime: $elapsedTime")
-
     }
 }

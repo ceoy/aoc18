@@ -87,13 +87,17 @@ class Day10(input: List<String> = FileLoader.load("day10_actual.txt")) {
              */
             fun parse(input: String): Point {
                 val (x, y) = input.run {
-                    Pair(substring(indexOf("<") + 1 until indexOf(",")).trim().toInt(),
-                            substring(indexOf(",") + 1 until indexOf(">")).trim().toInt())
-
+                    Pair(
+                        substring(indexOf("<") + 1 until indexOf(",")).trim().toInt(),
+                        substring(indexOf(",") + 1 until indexOf(">")).trim().toInt()
+                    )
                 }
+
                 val (dX, dY) = input.run {
-                    Pair(substring(lastIndexOf('<') + 1 until lastIndexOf(",")).trim().toInt(),
-                            substring(lastIndexOf(",") + 1 until lastIndexOf(">")).trim().toInt())
+                    Pair(
+                        substring(lastIndexOf('<') + 1 until lastIndexOf(",")).trim().toInt(),
+                        substring(lastIndexOf(",") + 1 until lastIndexOf(">")).trim().toInt()
+                    )
                 }
 
                 return Point(x, y, dX, dY)

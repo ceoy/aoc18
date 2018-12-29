@@ -60,13 +60,13 @@ class Day6(input: List<String> = FileLoader.load("day6.txt")) {
     }
 
     private fun isInfinite(x: Int, y: Int): Boolean =
-            y == top || y == bottom || x == left || x == right
+        y == top || y == bottom || x == left || x == right
 
     fun two(maxDistance: Int = 10000): Int {
         val grid = createGrid()
 
         var region = 0
-        grid.forEach {gridPoint ->
+        grid.forEach { gridPoint ->
             val value = locations.map {
                 (abs(gridPoint.first - it.x) + abs(gridPoint.second - it.y))
             }.sum()

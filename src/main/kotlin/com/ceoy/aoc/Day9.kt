@@ -1,13 +1,12 @@
 package com.ceoy.aoc
 
-import java.util.*
+import java.util.ArrayDeque
 
 class Day9(input: List<String> = FileLoader.load("day9.txt")) {
 
     private val game = input.last().split(" ").run {
         Game(this[0].toInt(), this[6].toInt())
     }
-
 
     fun partOne(): Long {
         return playTheMarbles(game)
@@ -36,7 +35,6 @@ class Day9(input: List<String> = FileLoader.load("day9.txt")) {
                 }
                 playerList[playerPosition] += circle.removeLast().toLong()
                 circle.addLast(circle.removeFirst())
-
             } else {
                 // move one
                 circle.addLast(circle.removeFirst())
@@ -47,11 +45,10 @@ class Day9(input: List<String> = FileLoader.load("day9.txt")) {
         return playerList.max()!!
     }
 
-
     fun partTwo(): Long {
         game.points *= 100
         return playTheMarbles(game)
     }
 
-    data class Game(val players: Int, var points: Int)
+    private data class Game(val players: Int, var points: Int)
 }

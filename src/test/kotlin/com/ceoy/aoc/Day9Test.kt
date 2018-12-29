@@ -31,7 +31,6 @@ class Day9Test {
 
         val five = Day9(five)
         assertEquals(37305, five.partOne())
-
     }
 
     @Test
