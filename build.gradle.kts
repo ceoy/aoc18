@@ -3,7 +3,6 @@
  *
  * This generated file contains a sample Kotlin application project to get you started.
  */
-
 plugins {
     // Apply the Kotlin JVM plugin to add support for Kotlin on the JVM
     id("org.jetbrains.kotlin.jvm").version("1.3.10")
@@ -39,8 +38,12 @@ dependencies {
     }
 }
 
-dependencies {
-
+tasks {
+    test {
+        // increase heap for part two in day 14
+        minHeapSize = "1024m"
+        maxHeapSize = "2048m"
+    }
 }
 
 application {

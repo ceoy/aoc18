@@ -4,7 +4,7 @@ import java.lang.StringBuilder
 
 class Day14 {
 
-    fun partOne(recipeToImprove: Int = 0): Long {
+    fun partOne(recipeToImprove: Int): Long {
 
         // quality score is % 10
         val scoreBoard = mutableListOf(3, 7)
@@ -23,7 +23,7 @@ class Day14 {
             elmo.position = (elmo.position + elmoScore + 1) % scoreBoard.size
         }
 
-        return scoreBoard.takeAt(10, recipeToImprove).toAppendedLong()
+        return scoreBoard.takeAt(10, recipeToImprove).toLong()
     }
 
     fun  partTwo(wantedResult: String): Int {

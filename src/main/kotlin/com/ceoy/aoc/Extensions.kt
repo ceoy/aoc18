@@ -22,16 +22,4 @@ fun Char.toNumber(): Int {
     return Character.getNumericValue(this)
 }
 
-fun List<Int>.toAppendedLong(): Long {
-    var result = 0L
-
-    this.reversed().forEachIndexed { index, int ->
-        var actualNumberToAdd = int.toLong()
-        repeat(index) {
-            actualNumberToAdd *= 10L
-        }
-        result += actualNumberToAdd
-    }
-
-    return result
-}
+fun List<Int>.toLong(): Long = this.joinToString("").toLong()
