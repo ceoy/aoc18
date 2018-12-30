@@ -36,7 +36,7 @@ class Day9(input: List<String> = FileLoader.load("day9.txt")) {
                 playerList[playerPosition] += circle.removeLast().toLong()
                 circle.addLast(circle.removeFirst())
             } else {
-                // move one
+                // doTurn one
                 circle.addLast(circle.removeFirst())
                 circle.addLast(i)
             }

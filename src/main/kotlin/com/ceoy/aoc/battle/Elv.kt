@@ -1,18 +1,21 @@
 package com.ceoy.aoc.battle
 
-class Elv(private val order: Int, private val position: GameObject.Position) : GameUnit {
+class Elv(private var order: Int, private val position: GameObject.Position, private val uniqueId: Int) : GameUnit {
 
-    private var health: Int = 0
-    private var attackPower: Int = 0
+    private var health: Int = 200
+    private var attackPower: Int = 3
 
-    override fun move() {
+    override fun takeDamage(damage: Int) {
+        health -= damage
     }
 
-    override fun attack() {
+    override fun updateOrder(order: Int) {
+        this.order = order
     }
 
-    override fun die() {
-    }
+    override fun getUniqueId(): Int = uniqueId
+
+    override fun isAlive(): Boolean = this.health > 0
 
     override fun getOrder(): Int = order
 

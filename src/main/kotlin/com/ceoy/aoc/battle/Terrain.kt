@@ -3,11 +3,11 @@ package com.ceoy.aoc.battle
 data class Terrain(val position: GameObject.Position, val terrainType: GameObject.TerrainType) : GameObject {
 
     /**
-     * Check if a GameUnit can move here
+     * Check if a GameUnit can doTurn here
      */
     fun canUnitMove(): Boolean = when (terrainType) {
         GameObject.TerrainType.WALL -> false
-        GameObject.TerrainType.GROUND -> true
+        GameObject.TerrainType.FLOOR -> true
     }
 
     companion object {

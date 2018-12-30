@@ -14,7 +14,7 @@ class Day13(private val input: List<String>) {
                     val cart = carts.find { it.x == x && it.y == y && !it.cartMoved }
 
                     cart?.let {
-                        // move cart
+                        // doTurn cart
                         cart.tick(grid)
 
                         val cartsAtPosition = carts.filter { filterCart ->
@@ -46,7 +46,7 @@ class Day13(private val input: List<String>) {
                     val cart = carts.find { it.x == x && it.y == y && !it.cartMoved }
 
                     cart?.let {
-                        // move cart
+                        // doTurn cart
                         cart.tick(grid)
 
                         val cartsAtPosition = carts.filter { filterCart ->
@@ -145,13 +145,13 @@ class Day13(private val input: List<String>) {
         }
 
         fun tick(grid: ArrayList<ArrayList<LineType>>) {
-            // move
+            // doTurn
             move()
 
             // adjust where to go next
             updateDirection(grid)
 
-            // do not move multiple times a tick
+            // do not doTurn multiple times a tick
             this.cartMoved = true
         }
 
@@ -189,7 +189,7 @@ class Day13(private val input: List<String>) {
                     memory++
                     nextDirection
                 }
-                LineType.NONE -> throw IllegalStateException("Cart cannot move to Line Type None}")
+                LineType.NONE -> throw IllegalStateException("Cart cannot doTurn to Line Type None}")
             }
         }
 
