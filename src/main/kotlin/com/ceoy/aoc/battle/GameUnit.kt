@@ -16,7 +16,7 @@ interface GameUnit : GameObject {
         var enemyToAttack = getAdjacentEnemy(enemies)
 
         if (enemyToAttack != null) {
-            this.attack(enemyToAttack)
+            this.attack(enemyToAttack, game)
         } else {
             // move, if possible
             val nextPositionToMoveTo = findMoveToMake(enemies, game)
@@ -30,7 +30,7 @@ interface GameUnit : GameObject {
                 // reevaluate enemies, since some could have died by now
                 enemyToAttack = getAdjacentEnemy(getEnemies(game))
                 if (enemyToAttack != null) {
-                    this.attack(enemyToAttack)
+                    this.attack(enemyToAttack, game)
                 }
             }
         }
@@ -93,7 +93,6 @@ interface GameUnit : GameObject {
             return null
         }
 
-
         val shortestPosition = shortestPaths.first()
         val nextPosition = shortestPaths.filter {
             it.second == shortestPosition.second
@@ -149,8 +148,12 @@ interface GameUnit : GameObject {
     /**
      * Attacks a Player
      */
-    fun attack(target: GameUnit) {
+    fun attack(target: GameUnit, gameLogic: GameLogic) {
         target.takeDamage(this.getAttackPower())
+
+        if (!target.isAlive()) {
+            gameLogic.onUnitDeath(target.getTeam())
+        }
     }
 
     /**

@@ -31,44 +31,50 @@ class Day15Test {
 
     @Test
     fun `Day 15 Part One Test Game`() {
-        val game = Game.parseGame(testGame, true)
-        assertEquals(18740, game.battle())
+        val game = Day15(testGame, true)
+        assertEquals(18740, game.partOne())
     }
 
     @Test
     fun `Day 15 Part One Test Game Two`() {
-        val game = Game.parseGame(testGameTwo)
-        assertEquals(28944, game.battle())
+        val game = Day15(testGameTwo)
+        assertEquals(28944, game.partOne())
     }
 
     @Test
     fun `Day 15 Part One Test Game Three`() {
-        val game = Game.parseGame(testGameThee)
-        assertEquals(27755, game.battle())
+        val game = Day15(testGameThee)
+        assertEquals(27755, game.partOne())
     }
 
     @Test
     fun `Day 15 Part One Test Game Four`() {
-        val game = Game.parseGame(testGameFour, true)
-        assertEquals(39514, game.battle())
+        val game = Day15(testGameFour, true)
+        assertEquals(39514, game.partOne())
     }
 
     @Test
     fun `Day 15 Part One Test Game Five`() {
-        val game = Game.parseGame(testGameFive)
-        assertEquals(36334, game.battle())
+        val game = Day15(testGameFive)
+        assertEquals(36334, game.partOne())
     }
 
     @Test
     fun `Day 15 Part One Test Game Six`() {
-        val game = Game.parseGame(testGameSix, true)
-        assertEquals(27730, game.battle())
+        val game = Day15(testGameSix, true)
+        assertEquals(27730, game.partOne())
     }
 
     @Test
-    fun `Test Actual Game`() {
-        val game = Game.parseGame(actualGame, true)
-        println(game.battle())
+    fun `Day 15 Test Actual Game`() {
+        val game = Day15(actualGame, true)
+        assertEquals(217890, game.partOne())
+    }
+
+    @Test
+    fun `Day 15 Test Part Two Actual Game`() {
+        val day15 = Day15(actualGame)
+        println(day15.partTwo())
     }
 
     @Test

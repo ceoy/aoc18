@@ -62,7 +62,7 @@ interface GameObject {
                 ?: GameObject.TerrainType.WALL
 
             // check if there is a unit (since that would also mean occupied)
-            val unit = game.getUnits().find { it.getPosition().y == y && it.getPosition().x == x }
+            val unit = game.getUnits().find { it.getPosition().y == y && it.getPosition().x == x && it.isAlive() }
 
             return terrainType == GameObject.TerrainType.FLOOR && unit == null
         }

@@ -13,6 +13,10 @@ class Elv(private var order: Int, private val position: GameObject.Position, pri
         this.order = order
     }
 
+    fun setAttackPower(attackPower: Int) {
+        this.attackPower = attackPower
+    }
+
     override fun getUniqueId(): Int = uniqueId
 
     override fun isAlive(): Boolean = this.health > 0

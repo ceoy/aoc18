@@ -15,4 +15,9 @@ interface GameLogic {
      * A Team just won, there are no more enemies !:)
      */
     fun gameWon(winningTeam: GameObject.Team)
+
+    /**
+     * Event Notification for Unit Death
+     */
+    fun onUnitDeath(team: GameObject.Team)
 }

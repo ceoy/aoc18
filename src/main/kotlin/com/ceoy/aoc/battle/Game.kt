@@ -3,6 +3,7 @@ package com.ceoy.aoc.battle
 class Game(
     private val gameField: List<Terrain>,
     private var gameUnits: MutableList<GameUnit>,
+    private val failOnElfDeath: Boolean,
     private val debug: Boolean
 ) : GameLogic {
 
@@ -10,7 +11,10 @@ class Game(
     private var turns: Int = 0
     private var score: Int = 0
 
-    fun battle(): Int {
+    private val width = gameField.maxBy { it.position.x }!!.position.x - gameField.minBy { it.position.x }!!.position.x
+    private val height = gameField.maxBy { it.position.y }!!.position.y - gameField.minBy { it.position.y }!!.position.y
+
+    fun battle(): Pair<Int, GameObject.Team> {
 
         if (debug) {
             println("Game is about to Start")
@@ -21,7 +25,7 @@ class Game(
             turn()
         }
 
-        return score
+        return Pair(score, gameUnits.first().getTeam())
     }
 
     private fun turn() {
@@ -67,31 +71,27 @@ class Game(
         println("~~~~ Current Game State ~~~~")
         println("This is Round: $turns\n")
 
-        var oldY = 0
-        getTerrain().forEach { terrain ->
+        (0 until height).forEach y@{ y ->
+            val unitsThisHeight = mutableListOf<GameUnit>()
+            (0 until width).forEach x@{ x ->
+                val terrain = getTerrain().find { it.position == GameObject.Position(x, y) } ?: return@x
 
-            if (terrain.position.y > oldY) {
-                oldY = terrain.position.y
-                println("")
+                // check if there is also a unit
+                val unit = getUnits().find { it.getPosition() == terrain.position && it.isAlive() }
+                if (unit != null) {
+                    unitsThisHeight.add(unit)
+                    print(unit.getTeam().unitChar)
+                } else {
+                    print(terrain.terrainType.parseValue)
+                }
             }
 
-            // check if there is also a unit
-            val unit = getUnits().find { it.getPosition() == terrain.position && it.isAlive()}
-            if (unit != null) {
-                print(unit.getTeam().unitChar)
-            } else {
-                print(terrain.terrainType.parseValue)
+            // now also print units
+            unitsThisHeight.forEach { unit ->
+                print(" ${unit.getTeam().unitChar}(${unit.getHealth()}),")
             }
-        }
 
-        println("\nUnits Overview:")
-        getUnits().forEach { unit ->
-            println(
-                "Unit Nr. ${unit.getUniqueId()} from " +
-                    "${unit.getTeam()} has " +
-                    "${unit.getHealth()} HP left and will go next as " +
-                    "${unit.getOrder() + 1}"
-            )
+            println("")
         }
 
         GameObject.Team.values().forEach { team ->
@@ -116,7 +116,12 @@ class Game(
     }
 
     companion object {
-        fun parseGame(input: List<String>, debug: Boolean = false): Game {
+        fun parseGame(
+            input: List<String>,
+            elfAttackPower: Int = 3,
+            failOnElfDeath: Boolean = false,
+            debug: Boolean = false
+        ): Game {
             val units = mutableListOf<GameUnit>()
             val terrain = mutableListOf<Terrain>()
 
@@ -128,6 +133,11 @@ class Game(
                     when (parsedObject) {
                         is GameUnit -> {
                             // add unit
+                            if (parsedObject is Elv) {
+                                // increase elv attack power, for part two
+                                parsedObject.setAttackPower(elfAttackPower)
+                            }
+
                             units.add(parsedObject)
                             unitOrder++
 
@@ -139,7 +149,16 @@ class Game(
                 }
             }
 
-            return Game(terrain, units, debug)
+            return Game(terrain, units, failOnElfDeath = failOnElfDeath, debug = debug)
+        }
+    }
+
+    override fun onUnitDeath(team: GameObject.Team) {
+        if (failOnElfDeath && team == GameObject.Team.ELV) {
+            gameOver = true
+
+            // the gobos won :(
+            gameWon(GameObject.Team.GOBLIN)
         }
     }
 
