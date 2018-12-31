@@ -13,14 +13,14 @@ class Day16(
 
         // step one: figure out op-code number
         // figure out
-        return (0 until input.size step 4).count { startIndex ->
-            val registers = input[startIndex].filter { it.isDigit() }.map(Character::getNumericValue).toIntArray()
+        return input.chunked(4).count { input ->
+            val registers = input[0].filter { it.isDigit() }.map(Character::getNumericValue).toIntArray()
 
             val resultRegisters =
-                input[startIndex + 2].filter { it.isDigit() }.map(Character::getNumericValue).toIntArray()
+                input[2].filter { it.isDigit() }.map(Character::getNumericValue).toIntArray()
 
             val instructionInfo =
-                input[startIndex + 1].split(" ").map(String::toInt).toIntArray()
+                input[1].split(" ").map(String::toInt).toIntArray()
 
             val validInstructions = allInstructions.count { instruction ->
                 val registerCopy = registers.copyOf()
@@ -37,16 +37,16 @@ class Day16(
 
         // step one: figure out op-code numb
         while (allInstructions.size != 0) {
-            (0 until input.size step 4).forEach { startIndex ->
+            input.chunked(4).forEach { input ->
 
-                val registers = input[startIndex].filter { it.isDigit() }.map(Character::getNumericValue).toIntArray()
+                val registers = input[0].filter { it.isDigit() }.map(Character::getNumericValue).toIntArray()
 
-                val resultRegisters = input[startIndex + 2]
+                val resultRegisters = input[2]
                     .filter { it.isDigit() }
                     .map(Character::getNumericValue)
                     .toIntArray()
 
-                val instructionInfo = input[startIndex + 1]
+                val instructionInfo = input[1]
                     .split(" ")
                     .map(String::toInt)
                     .toIntArray()
