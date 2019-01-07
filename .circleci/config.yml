@@ -1,0 +1,9 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: ymmtmdk/gradle-kotlin
+    steps:
+      - checkout
+      - run: echo "A first Hello :)"
+
