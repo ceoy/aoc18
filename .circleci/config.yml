@@ -5,5 +5,5 @@ jobs:
       - image: ymmtmdk/gradle-kotlin
     steps:
       - checkout
-      - run: /gradlew test
+      - run: ./gradlew test
 
